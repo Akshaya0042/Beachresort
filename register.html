@@ -1,0 +1,181 @@
+<html>
+    <head>
+        <title>Registeration form📝</title>
+        <style>
+            body{
+                font-family: Arial, Helvetica, sans-serif;
+            }
+            input:invalid{
+                border: 2px solid red;
+            }
+            input:valid {
+               border: 2px solid green;
+            }
+
+           .success-msg {
+            color: rgb(1, 14, 1);
+            font-size: larger;
+            font-weight: bold;
+            display: none;
+            margin-top: 10px;
+        }
+        
+        </style>
+    </head>
+    <body background="C:\Users\suku7\OneDrive\Desktop\emc\5.jpg" style="background-repeat:no-repeat; background-size: cover; ">
+        <center>
+        <h1>Beach Resorts🏖️</h1>
+        <h2>Resort booking form📝</h2>
+        
+        <hr>
+        <form  id="regform" onsubmit="return validate()"   >
+            <table>
+            <tr>
+                <td>First Name</td>
+                <td>Last Name</td>
+            </tr>
+            <tr>
+                <td><input type="text" id="firstname" placeholder="enter first name"></td>
+                <td><input type="text" id="secondname" placeholder="enter last name"></td>
+            </tr>
+            <tr></tr>
+            <tr>
+                <td>Address 1</td>
+                <td>Address 2</td>
+            </tr>
+            <tr>
+                <td><input type="text" id="add1" placeholder="enter the address"></td>
+                <td><input type="text" id="add2" placeholder="enter the address"></td>
+            </tr>
+              <tr></tr>
+            <tr>
+                <td>City</td>
+                <td>State</td>
+                <td>zip code</td>
+            </tr>
+            <tr>
+                <td><input type="text" id="city" placeholder="enter city"></td>
+                <td><input type="text" id="state" placeholder="enter State"></td>
+                <td><input type="text"id="pin" placeholder="enter zip code"></td>
+            </tr>
+              <tr></tr>
+            <tr>
+                <td>Phone</td>
+                <td>Email Address</td>
+            </tr>
+            <tr>
+                <td><input type="number" id="phn" placeholder="enter phnone number"></td>
+                <td><input type="email" id="email" placeholder="enter Email address"></td>
+            </tr>
+              <tr></tr>
+            <tr>
+                <td>Check-in date</td>
+                <td>Check-in time</td>
+                <td>Check-out date</td>
+                <td>Check-out time</td>
+            </tr>
+            <tr>
+                <td><input type="date" min="2025-05-10" id="indate" placeholder="select Check-in date"></td>
+                <td><input type="time"id="intime" placeholder="enter Check-in time"></td>
+                <td><input type="date" min="2025-05-10" id="outdate" placeholder="select Check-out date"></td>
+                <td><input type="time" id="outtime" placeholder="enter Check-out time"></td>
+            </tr>
+              <tr></tr>
+            <tr>
+                <td>Room preference</td>
+                <td>Adults</td>
+                <td>Children</td>
+            </tr>
+            <tr>
+                <td><input type="radio" name="room" value="Standard">Standard
+                    <input type="radio" name="room" value="Deluxe">Deluxe
+                    <input type="radio" name="room" value="Suite">Suite
+                </td>
+                <td><select>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                    <option>9</option>
+                    <option>10</option>
+                    </select>
+                </td>
+                <td><select>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+            </td>
+            </tr>
+              <tr></tr>   
+            <tr>
+                <td></td>
+                <td><button style="background-color: lightblue;" type="submit">REGISTER</button></td>
+                <td><input style="background-color: lightblue;" type="reset" value="RESET"></td>
+            </tr>
+        </table>
+        </form>
+        <div id="success" class="success-msg">Registered Successfully!</div>
+        <hr>
+    </center>
+    <center>
+        <a href="C:\Users\suku7\OneDrive\Desktop\emc\index.html">Home  |</a><a href="C:\Users\suku7\OneDrive\Desktop\emc\img">Images</a>
+    </center>
+    <script>
+function validate() {
+    // Get all values
+    let firstname = document.getElementById("firstname").value.trim();
+    let secondname = document.getElementById("secondname").value.trim();
+    let email = document.getElementById("email").value.trim();
+    let add1 = document.getElementById("add1").value.trim();
+    let add2 = document.getElementById("add2").value.trim();
+    let city = document.getElementById("city").value.trim();
+    let state = document.getElementById("state").value.trim();
+    let pin = document.getElementById("pin").value.trim();
+    let phn = document.getElementById("phn").value.trim();
+    let indate = document.getElementById("indate").value;
+    let intime = document.getElementById("intime").value;
+    let outdate = document.getElementById("outdate").value;
+    let outtime = document.getElementById("outtime").value;
+    let roomSelected = document.querySelector('input[name="room"]:checked');
+
+    // Empty field check
+    if (
+        firstname === "" || secondname === "" || email === "" ||
+        add1 === "" || add2 === "" || city === "" || state === "" ||
+        pin === "" || phn === "" || indate === "" || intime === "" ||
+        outdate === "" || outtime === "" || !roomSelected
+    ) {
+        alert("Please fill all fields.");
+        return false;
+    }
+
+    // Phone number check
+    if (phn.length !== 10) {
+        alert("Phone number must be exactly 10 digits.");
+        return false;
+    }
+
+    // Date validation
+    let checkIn = new Date(indate);
+    let checkOut = new Date(outdate);
+    if (checkOut <= checkIn) {
+        alert("Check-out date must be after check-in date.");
+        return false;
+    }
+
+    document.getElementById("success").style.display = "block";
+      return false;
+    }
+
+</script>
+
+    
+    </body>
+</html>
